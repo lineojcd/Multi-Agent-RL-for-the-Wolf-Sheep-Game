@@ -97,3 +97,7 @@ Change the symbols as you wish. You can not change the size of the map. All maps
 
 Change the name of your map argument in your run configuration, to run the agents on your custom map. 
 
+### Write your first Wolf Sheep Agent
+Open the example agent file. The main functions are move_sheep() and move_wolf(). Both these functions need to return one of the possible moves (MOVE_UP, MOVE_DOWN, MOVE_RIGHT, MOVE_LEFT, MOVE_NONE). It is up to you to figure out how to determine which moves your sheep and wolf should take. Possible choices could be search tree, A* star path planing, Reinforcement Learning and etc.
+
+There is an optional requirement that is the thinklimit for your agents, which is set to 1 second. If your agent thinks too long, the game will stop and the opponent will have won. In other words, make sure your code is not too computationally heavy. This is important as onboard computing resources are limited if you deploy your algorithm onto real robot. 
