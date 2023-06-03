@@ -26,13 +26,13 @@ Both, the wolf and the sheep have 5 movement options for each call:
 
 The **wolf** is allowed to **make a step for every second step of the sheep**. In other words the sheep can move twice as fast as the wolf.
 
-*Wolves cannot step on squares occupied by the opponent’s wolf (wolves block each other).
+* Wolves cannot step on squares occupied by the opponent’s wolf (wolves block each other).
 
-*Wolves cannot step on squares occupied by the sheep of the same player.
+* Wolves cannot step on squares occupied by the sheep of the same player.
 
-*Sheep cannot step on squares occupied by the wolf of the same player.
+* Sheep cannot step on squares occupied by the wolf of the same player.
 
-*Sheep cannot step on squares occupied by the opposite sheep.
+* Sheep cannot step on squares occupied by the opposite sheep.
 
 * Neither the sheep nor the wolf can enter a square with a fence on.
 
