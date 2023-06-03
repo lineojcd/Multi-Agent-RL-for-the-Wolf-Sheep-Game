@@ -15,9 +15,7 @@ The wolf's objective is to sabotage the other player, by removing food items and
 ### Rules:
 Both, the wolf and the sheep have 5 movement options for each call:
 1. move = MOVE_DOWN;
-
 2. move = MOVE_UP;
-
 3. move = MOVE_LEFT;
 
 4. move = MOVE_RIGHT;
