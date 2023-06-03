@@ -33,8 +33,8 @@ The **wolf** is allowed to **make a step for every second step of the sheep**. I
 
 Each game lasts for a maximum of 100 turns or unless a sheep gets caught by the wolf, then the game ends immediately.
 
-If the wolf of player1 catches the sheep of player2 the game ends immediately and player1 wins and is awarded <span style="color: red">all the points</span> for the current run.
-$${\color{red}all the points}$$
+If the wolf of player1 catches the sheep of player2 the game ends immediately and player1 wins and is awarded ${\color{red}all the points}$ for the current run.
+
 ### Objectives:
 **For the sheep**:
 - Avoid the wolf of the opposite player.
