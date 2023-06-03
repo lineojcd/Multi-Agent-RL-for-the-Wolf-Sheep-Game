@@ -27,15 +27,17 @@ Both, the wolf and the sheep have 5 movement options for each call:
 The **wolf** is allowed to **make a step for every second step of the sheep**. In other words the sheep can move twice as fast as the wolf.
 
 *Wolves cannot step on squares occupied by the opponent’s wolf (wolves block each other).
+
 *Wolves cannot step on squares occupied by the sheep of the same player.
+
 *Sheep cannot step on squares occupied by the wolf of the same player.
 
-Sheep cannot step on squares occupied by the opposite sheep.
+*Sheep cannot step on squares occupied by the opposite sheep.
 
-Neither the sheep nor the wolf can enter a square with a fence on.
+* Neither the sheep nor the wolf can enter a square with a fence on.
 
-Neither the sheep nor the wolf can step on a square outside the map. Imagine the map is surrounded by fences.
+* Neither the sheep nor the wolf can step on a square outside the map. Imagine the map is surrounded by fences.
 
-If the sheep steps on a food object the food object is consumed (removed from the map) and a score is awarded.
+* If the sheep steps on a food object the food object is consumed (removed from the map) and a score is awarded.
 
-If the wolf steps on a food object the food object gets removed but no score is awarded.
+* If the wolf steps on a food object the food object gets removed but no score is awarded.
