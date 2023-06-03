@@ -77,3 +77,23 @@ For example, if you want to run the map test.map which is in the folder resource
 python kingsheep.py resources/test.map -p1m random_player -p1n RandomPlayer -p2m greedy_player -p2n GreedyPlayer -d
 ```
 Note that the player modules need to be in the same folder as the kingsheep.py file in the current setup. Also note that when you create new maps to test your agents on, they need to have the file format .map (you can simply create them in a text editor, for example by editing the provided map). If for some reason your main Python version is not python 3, replace the python in the command line call to python3 to explicitly use this version.
+
+### Various Wolf Sheep Maps
+You can create different maps . To do this, copy test.map and edit the new file in a text editor.
+
+The map consists of 15x19 squares and each square can contain one of four elements, represented by the following symbols:
+1. Empty "."
+2. Grass "g"
+3. Rhubarb "r"
+4. Fence "#"
+
+The start position of the players are represented by the digits:
+- **S** (Sheep player 1) 
+- **W** (Wolf player 1) 
+- **s** (Sheep player 2) 
+- **w** (Wolf player 2)
+
+Change the symbols as you wish. You can not change the size of the map. All maps should have symbols distributed symmetrically.
+
+Change the name of your map argument in your run configuration, to run the agents on your custom map. 
+
