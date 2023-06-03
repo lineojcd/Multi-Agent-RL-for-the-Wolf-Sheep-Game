@@ -56,9 +56,24 @@ Make sure the relevant packages are installed on your computer (like **arcade** 
 The **arcade** version used in this project is 2.0.0.
 
 ### How to run the code
-- Open the terminal and change the directory to the directory where the kingsheep.py file is [cd Path/To/The/Code]
+- Open the terminal and change the directory to the directory where the kingsheep.py file is:
 ```
-cd Path/To/The/Code
+cd Path_To_The_Code
 ```
 - Call the game from the python file kingsheep.py. You have the following options:
-  - -d: turns on debug mode, and prints the state of the game after each iteration in the terminal.
+  - **-d**: turns on debug mode, and prints the state of the game after each iteration in the terminal.
+  - **-v** [int]: determines the verbosity level, i.e. how much information is printed: 1 prints the elapsed time, 2 adds the system messages, 3 adds the final game state of the game.
+  - **-g**: turns on the graphics, so you can see the sheep and wolves walk around and follow the progress of the game visually.
+  - **-s** [float]: slows down each iteration in seconds (fractions are allowed).
+  - **-p1m** [string]: enter the name of the module of player 1 here.
+  - **-p1n** [string]: enter the name of the class that defines player 1 here.
+  - **-p2m** [string]: enter the name of the module of player 2 here.
+  - **-p2n** [string]: enter the name of the class that defines player 2 here.
+  - **-h**: prints the help option in the terminal, explaining all the arguments you can used when playing the game (like described in this list here).
+  - **map** [filepath/to/map.map]: the file path to the map you want to run the game with. This is the **only mandatory** argument.
+
+For example, if you want to run the map test.map which is in the folder resources, and you want the **Random player** (defined in the class RandomPlayer in the module random_player) to play against the **Greedy player** (defined in the class GreedyPlayer in the module greedy_player), and you want the debug information, you would call the game using the following line:
+```
+python kingsheep.py resources/test.map -p1m random_player -p1n RandomPlayer -p2m greedy_player -p2n GreedyPlayer -d
+```
+Note that the player modules need to be in the same folder as the kingsheep.py file in the current setup. Also note that when you create new maps to test your agents on, they need to have the file format .map (you can simply create them in a text editor, for example by editing the provided map). If for some reason your main Python version is not python 3, replace the python in the command line call to python3 to explicitly use this version.
