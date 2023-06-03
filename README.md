@@ -26,26 +26,6 @@ Both, the wolf and the sheep have 5 movement options for each call:
 
 The **wolf** is allowed to **make a step for every second step of the sheep**. In other words the sheep can move twice as fast as the wolf.
 
-* Wolves cannot step on squares occupied by the opponent’s wolf (wolves block each other).
-
-* Wolves cannot step on squares occupied by the sheep of the same player.
-
-* Sheep cannot step on squares occupied by the wolf of the same player.
-
-* Sheep cannot step on squares occupied by the opposite sheep.
-
-* Neither the sheep nor the wolf can enter a square with a fence on.
-
-* Neither the sheep nor the wolf can step on a square outside the map. Imagine the map is surrounded by fences.
-
-* If the sheep steps on a food object the food object is consumed (removed from the map) and a score is awarded.
-
-* If the wolf steps on a food object the food object gets removed but no score is awarded.
-
-const copy = `
-Here is a line of text
-
-
 - Wolves cannot step on squares occupied by the opponent’s wolf (wolves block each other).
 - Wolves cannot step on squares occupied by the sheep of the same player.
 - Sheep cannot step on squares occupied by the wolf of the same player.
@@ -55,55 +35,7 @@ Here is a line of text
 - If the sheep steps on a food object the food object is consumed (removed from the map) and a score is awarded.
 - If the wolf steps on a food object the food object gets removed but no score is awarded.
 
-Here is another line of text
-`;
 
-const styles = {
-  paragraph_list: {
-    marginTop: 0,
-    marginBottom: 0,
-  },
-  bullet_list_icon: {
-    lineHeight: 0,
-  }
-};
 
-const rules = {
-  paragraph: (node, children, parent, styles) => {
-    if(parent[0].type === 'list_item') {
-      return (
-        <View key={node.key} style={styles._VIEW_SAFE_paragraph_list}>
-          {children}
-        </View>
-      );
-    }
 
-    return (
-      <View key={node.key} style={styles._VIEW_SAFE_paragraph}>
-        {children}
-      </View>
-    );
-  }
-}
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={{height: '100%'}}>
-          <View style={{height: '100%', padding: 10}}>
-            <Markdown 
-              debugPrintTree
-              style={styles}
-              rules={rules}
-            >
-              {copy}
-            </Markdown>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
