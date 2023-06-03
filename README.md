@@ -31,7 +31,15 @@ The **wolf** is allowed to **make a step for every second step of the sheep**. I
 - If the sheep steps on a food object the food object is consumed (removed from the map) and a score is awarded.
 - If the wolf steps on a food object the food object gets removed but no score is awarded.
 
+Each game lasts for a maximum of 100 turns or unless a sheep gets caught by the wolf, then the game ends immediately.
 
+If the wolf of player1 catches the sheep of player2 the game ends immediately and player1 wins and is awarded all the points for the current run.
 
-
+### Objectives:
+For the sheep:
+- Wolves cannot step on squares occupied by the opponent’s wolf (wolves block each other).
+- Maximize points, by consuming as many food objects as possible.
+-   The rhubarb object gives you five score points
+-   The grass object gives you one score point
+For the wolf:
 
