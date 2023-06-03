@@ -36,11 +36,27 @@ Each game lasts for a maximum of 100 turns or unless a sheep gets caught by the 
 If the wolf of player1 catches the sheep of player2 the game ends immediately and player1 wins and is awarded all the points for the current run.
 
 ### Objectives:
-For the sheep:
-- Wolves cannot step on squares occupied by the opponent’s wolf (wolves block each other).
+**For the sheep**:
+- Avoid the wolf of the opposite player.
 - Maximize points, by consuming as many food objects as possible.
-  - The rhubarb object gives you five score points
-  - The grass object gives you one score point
+  - The rhubarb object gives you **five** score points
+  - The grass object gives you **one** score point
 
-For the wolf:
+**For the wolf**:
+- Catch the other player's sheep.
+- Remove food objects to sabotage the other player.
+- Block the other wolf.
 
+## Project Setup
+### Getting started
+The code provided to you is written using Python version 3.7. The instructions given here will be to simply run the game and your code in the terminal. Alternatively, you can use an IDE of your choosing, for example PyCharm.
+
+Make sure the relevant packages are installed on your computer (like arcade to run the graphics); in case they are not, you can install them, e.g. using pip/Anaconda/Honeybrew.
+
+The **arcade** version used in this project is 2.0.0
+```
+pip install -r requirements.txt
+```
+
+### How to run the code
+To run the code in the terminal, take the following steps:
