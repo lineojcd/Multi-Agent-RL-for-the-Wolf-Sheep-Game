@@ -49,14 +49,16 @@ If the wolf of player1 catches the sheep of player2 the game ends immediately an
 
 ## Project Setup
 ### Getting started
-The code provided to you is written using Python version 3.7. The instructions given here will be to simply run the game and your code in the terminal. Alternatively, you can use an IDE of your choosing, for example PyCharm.
+The code provided to you is written using **Python version 3.7**. The instructions given here will be to simply run the game and your code in the terminal. Alternatively, you can use an IDE of your choosing, for example **PyCharm**.
 
-Make sure the relevant packages are installed on your computer (like arcade to run the graphics); in case they are not, you can install them, e.g. using pip/Anaconda/Honeybrew.
+Make sure the relevant packages are installed on your computer (like **arcade** to run the graphics); in case they are not, you can install them, e.g. using pip/Anaconda/Honeybrew.
 
-The **arcade** version used in this project is 2.0.0
+The **arcade** version used in this project is 2.0.0.
 ```
 pip install -r requirements.txt
 ```
 
 ### How to run the code
-To run the code in the terminal, take the following steps:
+- Open the terminal and change the directory to the directory where the kingsheep.py file is [cd Path/To/The/Code]
+- Call the game from the python file kingsheep.py. You have the following options:
+  - -d: turns on debug mode, and prints the state of the game after each iteration in the terminal.
