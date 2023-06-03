@@ -17,9 +17,7 @@ Both, the wolf and the sheep have 5 movement options for each call:
 1. move = MOVE_DOWN;
 2. move = MOVE_UP;
 3. move = MOVE_LEFT;
-
 4. move = MOVE_RIGHT;
-
 5. move = MOVE_NONE;
 
 The **wolf** is allowed to **make a step for every second step of the sheep**. In other words the sheep can move twice as fast as the wolf.
