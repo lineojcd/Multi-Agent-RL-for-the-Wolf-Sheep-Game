@@ -102,8 +102,40 @@ Open the example agent file. The main functions are **move_sheep()** and **move_
 
 There is an **optional requirement** that is the thinklimit for your agents, which is set to 1 second. If your agent thinks too long, the game will stop and the opponent will have won. In other words, make sure your code is not too computationally heavy. This is important as onboard computing resources are limited if you deploy your algorithm onto real robot. 
 
-## Running platform configuration
+### Running platform configuration
 This program ran on a MacBook Pro with a 2.2 GHz i7 core and 16 GB memory.
+
+### Code structure
+The folder contains the following files:
+- config.py: this file sets the global variables such as field height.
+- kingsheep.py: this file runs the game and is the main file.
+- ksgraphics.py: this files allows showing the game in its graphical representation
+- resources: a folder containing the test map and images needed for the graphical representation
+- Four preset players:
+  - Greedy player: this agent uses a simply greedy approach
+  - Keyboard player: use this agent to play with your keyboard rather than an algorithm
+  - Passive player: this agent simply stays in place
+  - Random player: this player makes a random move every turn
+  - One example agent (example_player.py) 
+
+You are given the example agent to get started. You need to do the following within this file (this instruction is also included in the file, and will make more sense once you open the file):
+- Change the name of your file to '[playername]_A1.py', where [playername] can be chosen by yourself.
+- Change the name of the class to a name of your choosing.
+- Change the def 'get_class_name()' to return the new name of your class
+- Change the init of your class:
+  - self.name can be an (anonymous) name of your choosing
+  - self.playername needs to be your playername
+  - Update move_sheep() and move_wolf() function 
+
+## Agents
+### random 
+- Four preset players:
+  - Greedy player: this agent uses a simply greedy approach
+  - Keyboard player: use this agent to play with your keyboard rather than an algorithm
+  - Passive player: this agent simply stays in place
+  - Random player: this player makes a random move every turn
+  - One example agent (example_player.py) 
+### greedy
 
 ## Credits
 This project uses the GUI environment from the DDIS group (led by Prof. Abraham Bernstein) of the University of Zurich.
