@@ -145,8 +145,8 @@ A preset agent that uses a simply greedy approach. It includes the following fun
 - food_present() tells you if the food is still available in the map.
 - valid_move() checks if the action you are going to take is valid or not.
 - closest_goal() returns the nearest food position based on manhattan distance and ignore the obstables during the way.
-- wolf_close() returns True/False is the enemy wolf is close to your sheep
-- run_from_wolf()
+- wolf_close() returns True/False is the enemy wolf is close to your sheep.
+- run_from_wolf() takes action to run from enemy wolf.
 - gather_closest_goal()：see pseudocode below
 ```
 if the goal and my position are in the same column:
@@ -199,6 +199,16 @@ else:
   else:
       print('fail')
       return MOVE_NONE
+```
+- move_wolf() takes enemy sheep as the goal and move towards it
+- move_sheep() see pseudocode below
+```
+if wolf_close:
+  return run_from_wolf()
+elif food_present():
+  return gather_closest_goal(closest_goal())
+else:
+  return MOVE_NON
 ```
 The drawback of this strategy is shown in the gif below:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/greedyplayer_drawback_a.gif)
