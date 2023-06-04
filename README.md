@@ -159,6 +159,9 @@ The training data will be stored in .csv files. It was gathered from previous ga
 - score1: the score of player 1 axer the move.
 - score2: the score of player 2 axer the move.
 - reason: on the final line of the file, the reason will be given for the termination of the game, if it was not the maximum number of iterations
+
+Some sample data is shown below:
+![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/raw_train_data.png)
 One can approach the game as a classification problem: based on the provided training data (or the data you create yourself), you can train a classification model that uses the field as input and classifies which move it predicts the player should do. Possible algorithms include: Naive Bayes, Decision Tree, or Support Vector Machine.
 
 For each of these algorithms, you need to determine features of the game state that you use to classify the game state. For example, these feature can include how close a piece of grass is for a sheep-move, or where the sheep is for a wolf-move. You parse the field into a feature vector your algorithm can use as input.
