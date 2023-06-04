@@ -201,7 +201,7 @@ else:
       return MOVE_NONE
 ```
 The drawback of this strategy is shown in the gif below:
-![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/greedyplayer_drawback.gif)
+![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/greedyplayer_drawback_a.gif)
 ### A star player
 A agent implemented
 ### Learning player
