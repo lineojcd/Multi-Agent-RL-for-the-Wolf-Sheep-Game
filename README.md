@@ -143,9 +143,61 @@ A preset agent that simply **stays** in place every turn.
 A preset agent that uses a simply greedy approach. It includes the following functions:
 - get_player_position() gets the current position of the player's or enemy player's sheep or wolf.
 - food_present() tells you if the food is still available in the map.
-- valid_move() check if the action you are going to take is valid or not.
-- closest_goal() returns the nearest food position.
-- gather_closest_goal() 
+- valid_move() checks if the action you are going to take is valid or not.
+- closest_goal() returns the nearest food position based on manhattan distance and ignore the obstables during the way.
+- gather_closest_goal()： 
+```
+if the goal and my postion are in the same **column**
+  if the goal right above me
+    if valid_move(above_grid):
+      return MOVE_UP
+    else:
+      return MOVE_RIGHT
+  else:
+    if valid_move(below_grid):
+      return MOVE_DOWN
+    else:
+      return MOVE_RIGHT
+elif the goal and my postion are in the same **row**:
+  if the goal is on my left:
+    if valid_move(left_grid);
+      return MOVE_LEFT
+    else:
+      MOVE_UP
+  else:
+    if valid_move(right_grid);
+      return MOVE_RIGHT
+    else:
+      MOVE_UP
+else:
+  #go left or up
+  if the goal is on my left and above:
+    if valid_move(left_grid):
+      return MOVE_LEFT
+    else:
+      return MOVE_UP
+  #go left or down
+  elif the goal is on my left and below:
+    if valid_move(left_grid):
+        return MOVE_LEFT
+    else:
+        return MOVE_DOWN
+  #go right or up
+  elif the goal is on my right and above:    
+    if valid_move(right_grid):
+        return MOVE_RIGHT
+    else:
+        return MOVE_UP
+  #go right or down
+  elif the goal is on my right and below:
+    if valid_move(right_grid):
+        return MOVE_RIGHT
+    else:
+        return MOVE_DOWN
+  else:
+      print('fail')
+      return MOVE_NONE
+```
 ### A star player
 A agent implemented
 ### Learning player
@@ -168,7 +220,7 @@ For each of these algorithms, you need to determine features of the game state t
 
 ### Deep Reinforcement Learning player
 Obviously, the input matrix can be seen as an image and it is the **state** of the game if talking in the context of Reinforcement Learning.
-One can also design the Convolutional Neural Networks to extract features from input images and output the action or action probability distrbution for the agent to chose. In this case, the CNN is actually approximating a policy function that map the states to the action probability distrbution. The diagram is as follows:
+**One can also design the Convolutional Neural Networks to extract features from input images and output the action or action probability distrbution for the agent to chose**. In this case, the CNN is actually approximating a policy function that map the states to the action probability distrbution. The diagram is as follows:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/DQN_state_action.png)
 
 However, this fashion of end-to-end is really time consuming and hence required a huge computing resources. Due to the limited computing power, we preprocess the input data (a 15x19 matrix) into a 1-D vector with the following features as elements below. Compared with the fashion of end-to-end learning, this method sacrifices generalization ability but it is a practical way to deal with our case. One can design one or many Convolutional Neural Networks to process the input image and output one or many features. 
