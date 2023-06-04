@@ -4,7 +4,7 @@ Multi-Agent RL for the Wolf-Sheep Game
 ## Game Description
 In the figure below, you can see how the GUI of the game looks like.
 
-Each game is played by two players (P1 and P2) that play against each other. A player has to operate two agents: the sheep and the wolf.
+Each game is played by two players (P1 and P2) that play against each other. A player has to operate two agents: the **sheep** and the **wolf**.
 
 The wolf's objective is to sabotage the other player, by removing food items and trying to catch the opposite player's sheep. The sheep's objective is to score as many points as possible by eating food items.
 
@@ -128,14 +128,17 @@ You are given the example agent to get started. You need to do the following wit
   - Update move_sheep() and move_wolf() function 
 
 ## Agents
+The Agents are the key of this project as different agents have different capability to win the game.
 ### random 
-- Four preset players:
-  - Greedy player: this agent uses a simply greedy approach
-  - Keyboard player: use this agent to play with your keyboard rather than an algorithm
-  - Passive player: this agent simply stays in place
-  - Random player: this player makes a random move every turn
-  - One example agent (example_player.py) 
-### greedy
+A preset agent that moves randomly every turn
+### Keyboard 
+A preset agent that receives your keyboard command rather than controlled by an algorithm
+### Passive 
+A preset agent that simply stays in place every turn
+### Greedy
+A preset agent that uses a simply greedy approach
+### A star
+A agent implemented
 
 ## Credits
 This project uses the GUI environment from the DDIS group (led by Prof. Abraham Bernstein) of the University of Zurich.
