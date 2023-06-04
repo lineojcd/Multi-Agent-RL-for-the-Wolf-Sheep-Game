@@ -145,10 +145,10 @@ A preset agent that uses a simply greedy approach. It includes the following fun
 - food_present() tells you if the food is still available in the map.
 - valid_move() checks if the action you are going to take is valid or not.
 - closest_goal() returns the nearest food position based on manhattan distance and ignore the obstables during the way.
-- gather_closest_goal()： 
+- gather_closest_goal()：see pseudocode below
 ```
-if the goal and my postion are in the same **column**
-  if the goal right above me
+if the goal and my position are in the same column:
+  if the goal right above me:
     if valid_move(above_grid):
       return MOVE_UP
     else:
@@ -158,7 +158,7 @@ if the goal and my postion are in the same **column**
       return MOVE_DOWN
     else:
       return MOVE_RIGHT
-elif the goal and my postion are in the same **row**:
+elif the goal and my position are in the same row:
   if the goal is on my left:
     if valid_move(left_grid);
       return MOVE_LEFT
