@@ -130,13 +130,13 @@ You are given the example agent to get started. You need to do the following wit
 ## Agents
 The Agents are the key of this project as different agents have different capability to win the game.
 ### random 
-A preset agent that moves randomly every turn
+A preset agent that moves randomly every turn.
 ### Keyboard 
-A preset agent that receives your keyboard command rather than controlled by an algorithm
+A preset agent that receives your keyboard command rather than controlled by an algorithm.
 ### Passive 
-A preset agent that simply stays in place every turn
+A preset agent that simply stays in place every turn.
 ### Greedy
-A preset agent that uses a simply greedy approach
+A preset agent that uses a simply greedy approach.
 ### A star
 A agent implemented
 
