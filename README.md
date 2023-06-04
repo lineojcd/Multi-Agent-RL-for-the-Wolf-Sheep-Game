@@ -213,7 +213,10 @@ else:
 The drawback of this strategy is shown in the gif below:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/greedyplayer_drawback_a.gif)
 ### A star player
-A agent implemented
+[A* search algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm)
+
+A visualization of A star path finding algorithm is shown below:
+![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/Astart.png)
 ### Learning player
 Unlike the previous algorithm, in this approach, one needs to learn the strategy from the past experience aka. training data.
 
@@ -229,6 +232,7 @@ The training data will be stored in .csv files. It was gathered from previous ga
 Some sample data is shown below:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/raw_train_data.png)
 One can approach the game as a classification problem: based on the provided training data (or the data you create yourself), you can train a classification model that uses the field as input and classifies which move it predicts the player should do. This is the high-level idea of learning strategy. Possible algorithms include: Naive Bayes, Decision Tree, Support Vector Machine, Neural Network etc. 
+
 For each of these algorithms, you need to determine features of the game state that you use to classify the game state. For example, these feature can include how close a piece of grass is for a sheep-move, or where the sheep is for a wolf-move. You parse the field into a feature vector your algorithm can use as input.
 
 ### Deep Reinforcement Learning player
