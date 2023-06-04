@@ -141,9 +141,9 @@ A preset agent that receives your keyboard command rather than controlled by an 
 A preset agent that simply stays in place every turn.
 ### Greedy
 A preset agent that uses a simply greedy approach. It includes the following functions:
-
-- get_player_position() gets the current position of the player's or enemy player's sheep or wolf
-- food_present() tells you if the food is still available in the map
+- get_player_position() gets the current position of the player's or enemy player's sheep or wolf.
+- food_present() tells you if the food is still available in the map.
+- valid_move() check if the action you are going to take is valid or not.
 ### A star
 A agent implemented
 
