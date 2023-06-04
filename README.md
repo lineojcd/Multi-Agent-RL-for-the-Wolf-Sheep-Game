@@ -133,17 +133,19 @@ In addition to the preset agent, we developed others agents to play the Wolf she
 
 ## Agents
 The Agents are the key of this project as different agents have different capability to win the game.
-### random 
+### Random 
 A preset agent that moves randomly every turn.
 ### Keyboard 
 A preset agent that receives your keyboard command rather than controlled by an algorithm.
 ### Passive 
-A preset agent that simply stays in place every turn.
+A preset agent that simply **stays** in place every turn.
 ### Greedy
 A preset agent that uses a simply greedy approach. It includes the following functions:
 - get_player_position() gets the current position of the player's or enemy player's sheep or wolf.
 - food_present() tells you if the food is still available in the map.
 - valid_move() check if the action you are going to take is valid or not.
+- closest_goal() returns the nearest food position.
+- gather_closest_goal() 
 ### A star
 A agent implemented
 
