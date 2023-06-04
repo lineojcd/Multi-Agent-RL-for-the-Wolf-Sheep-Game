@@ -167,7 +167,15 @@ One can approach the game as a classification problem: based on the provided tra
 For each of these algorithms, you need to determine features of the game state that you use to classify the game state. For example, these feature can include how close a piece of grass is for a sheep-move, or where the sheep is for a wolf-move. You parse the field into a feature vector your algorithm can use as input.
 
 ### Deep Reinforcement Learning player
-Due to the limited computing power, we preprocess the input data (a 15x19 matrix) into a 1-D vector with the following features as elements below:
+Obviously, the input matrix can be seen as an image and it is the **state** of the game if talking in the context of Reinforcement Learning.
+One can also design the Convolutional Neural Networks to extract features from input images and output the action or action probability distrbution for the agent to chose. In this case, the CNN is actually approximating a policy function that map the states to the action probability distrbution. The diagram is as follows:
+![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/DQN_state_action.png)
+
+However, this fashion of end-to-end is really time consuming and hence required a huge computing resources. Due to the limited computing power, we preprocess the input data (a 15x19 matrix) into a 1-D vector with the following features as elements below. This is
+ 
+
+![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/cnn_extractor.png)
+
 
 **For Sheep**:
 - sheepfencing: Is my sheep blocking the enemy sheep as the fence?
