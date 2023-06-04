@@ -171,9 +171,9 @@ Obviously, the input matrix can be seen as an image and it is the **state** of t
 One can also design the Convolutional Neural Networks to extract features from input images and output the action or action probability distrbution for the agent to chose. In this case, the CNN is actually approximating a policy function that map the states to the action probability distrbution. The diagram is as follows:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/DQN_state_action.png)
 
-However, this fashion of end-to-end is really time consuming and hence required a huge computing resources. Due to the limited computing power, we preprocess the input data (a 15x19 matrix) into a 1-D vector with the following features as elements below. This is
- 
+However, this fashion of end-to-end is really time consuming and hence required a huge computing resources. Due to the limited computing power, we preprocess the input data (a 15x19 matrix) into a 1-D vector with the following features as elements below. Compared with the fashion of end-to-end learning, this method sacrifices generalization ability but it is a practical way to deal with our case. One can design one or many Convolutional Neural Networks to process the input image and output one or many features. 
 
+For example, we can design a convolutional neural network to extract the position of the target from the input image and this prediction accuracy will be 100% in this context. The other features can be also extracted similarly. The figure below illustrate this approach:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/cnn_extractor.png)
 
 
