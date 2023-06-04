@@ -35,6 +35,8 @@ Each game lasts for a **maximum of 100 turns** or unless a sheep gets caught by 
 
 If the wolf of player1 catches the sheep of player2 the game ends immediately and player1 wins and is awarded ${\color{red}all &ensp; the&ensp; points}$ for the current run.
 
+This is a **fully observable environment** meaning that you can have all the information in each step including where the food is and the enemy sheep or wolf is.
+
 ### Objectives:
 **For the sheep**:
 - Avoid the wolf of the opposite player.
@@ -138,7 +140,10 @@ A preset agent that receives your keyboard command rather than controlled by an 
 ### Passive 
 A preset agent that simply stays in place every turn.
 ### Greedy
-A preset agent that uses a simply greedy approach.
+A preset agent that uses a simply greedy approach. It includes the following functions:
+
+- get_player_position() gets the current position of the player's or enemy player's sheep or wolf
+- food_present() tells you if the food is still available in the map
 ### A star
 A agent implemented
 
