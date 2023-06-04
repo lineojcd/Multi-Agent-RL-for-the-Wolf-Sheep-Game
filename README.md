@@ -163,7 +163,7 @@ One can approach the game as a classification problem: based on the provided tra
 
 For each of these algorithms, you need to determine features of the game state that you use to classify the game state. For example, these feature can include how close a piece of grass is for a sheep-move, or where the sheep is for a wolf-move. You parse the field into a feature vector your algorithm can use as input.
 
-### Deep Learning player
+### Deep Reinforcement Learning player
 Due to the limited computing power, we preprocess the input data (a 15x19 matrix) into a 1-D vector with the following features as elements below:
 
 **For Sheep**:
@@ -184,9 +184,23 @@ Due to the limited computing power, we preprocess the input data (a 15x19 matrix
 - my_pos_stay_safeable: Is it safe to stay on current grid?
 - runfromwolf: Does my sheep need to run from wolf?
 
-All of the above features only have value 1 or 0. 1 means Yes and 0 means no. A sample feature vector looks like: [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1]. Given this input, the sample action taken might be -1.
+All of the above features only have value 1 or 0. 1 means True and 0 means False. A sample feature vector looks like: [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1]. In the context of RL, this can be called a **state**.
+Given this input, the sample **action** taken might be -1.
 
 **For Wolf**:
+- stuckableSheep: Is my agent stucking the enemy sheep to wait for assitence
+- stayable: Is my agent better staying at current spot?
+- mypos_2_new_tar_has_way: Is there a way towards the target?
+- mypos_up_2_new_tar_real_dist_smaller: Is it starting from my up grid to the target better?
+- mypos_down_2_new_tar_real_dist_smaller: Is it starting from my down grid to the target better?
+- mypos_left_2_new_tar_real_dist_smaller: Is it starting from my left grid to the target better?
+- mypos_right_2_new_tar_real_dist_smaller: Is it starting from my right grid to the target better?
+- my_pos_up_walkable: Is my up grid walkable?
+- my_pos_down_walkable: Is my down grid walkable?
+- my_pos_left_walkable: Is my left grid walkable?
+- my_pos_right_walkable: Is my right grid walkable?
+
+In the context of RL, a sample **state** for Wolf maybe look like [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1] and the **action** taken might be 0.
 
 
 ## Credits
