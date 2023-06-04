@@ -133,22 +133,35 @@ In addition to the preset agent, we developed others agents to play the Wolf she
 
 ## Agents
 The Agents are the key of this project as different agents have different capability to win the game.
-### Random 
+### Random player
 A preset agent that moves randomly every turn.
-### Keyboard 
+### Keyboard player
 A preset agent that receives your keyboard command rather than controlled by an algorithm.
-### Passive 
+### Passive player
 A preset agent that simply **stays** in place every turn.
-### Greedy
+### Greedy player
 A preset agent that uses a simply greedy approach. It includes the following functions:
 - get_player_position() gets the current position of the player's or enemy player's sheep or wolf.
 - food_present() tells you if the food is still available in the map.
 - valid_move() check if the action you are going to take is valid or not.
 - closest_goal() returns the nearest food position.
 - gather_closest_goal() 
-### A star
+### A star player
 A agent implemented
-### Learning
+### Learning player
+Unlike the previous algorithm, in this approach, one needs to learn the strategy from the past experience aka. training data.
+
+The training data will be stored in .csv files. It was gathered from previous game experience. Each file is a game that is run, where the following data is gathered for each move:
+- field_before: this is the field before the move was made.
+- field_axer: this is the field axer the move was made.
+- turn_made_by: which player made the move (e.g. 'player1 sheep').
+- move_made: the actual move the agent made (e.g. -1).
+- score1: the score of player 1 axer the move.
+- score2: the score of player 2 axer the move.
+- reason: on the final line of the file, the reason will be given for the termination of the game, if it was not the maximum number of iterations
+One can approach the game as a classification problem: based on the provided training data (or the data you create yourself), you can train a classification model that uses the field as input and classifies which move it predicts the player should do. Possible algorithms include: Naive Bayes, Decision Tree, or Support Vector Machine.
+
+For each of these algorithms, you need to determine features of the game state that you use to classify the game state. For example, these feature can include how close a piece of grass is for a sheep-move, or where the sheep is for a wolfmove. You parse the field into a feature vector your algorithm can use as input.
 
 
 ## Credits
