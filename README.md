@@ -145,7 +145,8 @@ A preset agent that uses a simply greedy approach. It includes the following fun
 - food_present() tells you if the food is still available in the map.
 - valid_move() checks if the action you are going to take is valid or not.
 - closest_goal() returns the nearest food position based on manhattan distance and ignore the obstables during the way.
-- wolf_close 
+- wolf_close() returns True/False is the enemy wolf is close to your sheep
+- run_from_wolf()
 - gather_closest_goal()：see pseudocode below
 ```
 if the goal and my position are in the same column:
