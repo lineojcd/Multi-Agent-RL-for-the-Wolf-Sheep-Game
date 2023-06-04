@@ -127,6 +127,8 @@ You are given the example agent to get started. You need to do the following wit
   - self.playername needs to be your playername
 - Update move_sheep() and move_wolf() function 
 
+In addition to the preset agent, we developed others agents to play the Wolf sheep game. My new agents will be introduced under the **Agents** section below:
+
 ## Agents
 The Agents are the key of this project as different agents have different capability to win the game.
 ### random 
