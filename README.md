@@ -164,7 +164,7 @@ One can approach the game as a classification problem: based on the provided tra
 For each of these algorithms, you need to determine features of the game state that you use to classify the game state. For example, these feature can include how close a piece of grass is for a sheep-move, or where the sheep is for a wolf-move. You parse the field into a feature vector your algorithm can use as input.
 
 ### Deep Learning player
-Due to the limited computing power, we preprocess the input data (a 15x19 matrix) into a 1-D vector with 
+Due to the limited computing power, we preprocess the input data (a 15x19 matrix) into a 1-D vector with the following features below:
 - sheepfencing: Is my sheep blocking the enemy sheep as the fence?
 - stuckableSheep: Is my sheep stucking the enemy sheep to assit my wolf?
 - stayable: Is my sheep better staying at current spot?
