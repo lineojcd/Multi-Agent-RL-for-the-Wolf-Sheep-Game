@@ -165,6 +165,7 @@ For each of these algorithms, you need to determine features of the game state t
 
 ### Deep Learning player
 Due to the limited computing power, we preprocess the input data (a 15x19 matrix) into a 1-D vector with the following features as elements below:
+
 **For Sheep**:
 - sheepfencing: Is my sheep blocking the enemy sheep as the fence?
 - stuckableSheep: Is my sheep stucking the enemy sheep to assit my wolf?
@@ -182,7 +183,9 @@ Due to the limited computing power, we preprocess the input data (a 15x19 matrix
 - my_pos_right_walkable: Is my right grid walkable?
 - my_pos_stay_safeable: Is it safe to stay on current grid?
 - runfromwolf: Does my sheep need to run from wolf?
+
 All of the above features only have value 1 or 0. 1 means Yes and 0 means no. A sample feature vector looks like: [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1]. Given this input, the sample action taken might be -1.
+
 **For Wolf**:
 
 
