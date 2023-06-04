@@ -161,7 +161,26 @@ The training data will be stored in .csv files. It was gathered from previous ga
 - reason: on the final line of the file, the reason will be given for the termination of the game, if it was not the maximum number of iterations
 One can approach the game as a classification problem: based on the provided training data (or the data you create yourself), you can train a classification model that uses the field as input and classifies which move it predicts the player should do. Possible algorithms include: Naive Bayes, Decision Tree, or Support Vector Machine.
 
-For each of these algorithms, you need to determine features of the game state that you use to classify the game state. For example, these feature can include how close a piece of grass is for a sheep-move, or where the sheep is for a wolfmove. You parse the field into a feature vector your algorithm can use as input.
+For each of these algorithms, you need to determine features of the game state that you use to classify the game state. For example, these feature can include how close a piece of grass is for a sheep-move, or where the sheep is for a wolf-move. You parse the field into a feature vector your algorithm can use as input.
+
+### Deep Learning player
+Due to the limited computing power, we preprocess the input data (a 15x19 matrix) into a 1-D vector with 
+- sheepfencing: Is my sheep blocking the enemy sheep as the fence?
+- stuckableSheep: Is my sheep stucking the enemy sheep to assit my wolf?
+- stayable: Is my sheep better staying at current spot?
+- food_present: Is the food still available in the map?
+- mypos_2_new_tar_has_way: Is there a way towards the target?
+- mypos_up_2_new_tar_real_dist_smaller: Is it starting from my up grid to the target better?
+- mypos_down_2_new_tar_real_dist_smaller: Is it starting from my down grid to the target better?
+- mypos_left_2_new_tar_real_dist_smaller: Is it starting from my left grid to the target better?
+- mypos_right_2_new_tar_real_dist_smaller: Is it starting from my right grid to the target better?
+- new_tar_neighboring: Is the target neighboring?
+- my_pos_up_walkable: Is my up grid walkable?
+- my_pos_down_walkable: Is my down grid walkable?
+- my_pos_left_walkable: Is my left grid walkable?
+- my_pos_right_walkable: Is my right grid walkable?
+- my_pos_stay_safeable: Is it safe to stay on current grid?
+- runfromwolf: Does my sheep need to run from wolf?
 
 
 ## Credits
