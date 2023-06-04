@@ -14,11 +14,11 @@ The wolf's objective is to sabotage the other player, by removing food items and
 
 ### Rules:
 Both, the wolf and the sheep have 5 movement options for each call:
-1. move = MOVE_DOWN;
-2. move = MOVE_UP;
-3. move = MOVE_LEFT;
-4. move = MOVE_RIGHT;
-5. move = MOVE_NONE;
+1. move = MOVE_DOWN, represented by 1
+2. move = MOVE_UP, represented by -1
+3. move = MOVE_LEFT, represented by -2
+4. move = MOVE_RIGHT, represented by 2
+5. move = MOVE_NONE, represented by 0
 
 The **wolf** is allowed to **make a step for every second step of the sheep**. In other words the sheep can move twice as fast as the wolf.
 
@@ -145,6 +145,7 @@ A preset agent that uses a simply greedy approach. It includes the following fun
 - food_present() tells you if the food is still available in the map.
 - valid_move() checks if the action you are going to take is valid or not.
 - closest_goal() returns the nearest food position based on manhattan distance and ignore the obstables during the way.
+- wolf_close 
 - gather_closest_goal()：see pseudocode below
 ```
 if the goal and my position are in the same column:
