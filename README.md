@@ -102,5 +102,8 @@ Open the example agent file. The main functions are move_sheep() and move_wolf()
 
 There is an optional requirement that is the thinklimit for your agents, which is set to 1 second. If your agent thinks too long, the game will stop and the opponent will have won. In other words, make sure your code is not too computationally heavy. This is important as onboard computing resources are limited if you deploy your algorithm onto real robot. 
 
+## Running platform configuration
+This program ran on a MacBook Pro with a 2.2 GHz i7 core and 16 GB memory.
+
 ## Credits
 This project uses the GUI environment from the DDIS group (led by Prof. Abraham Bernstein) of the University of Zurich.
