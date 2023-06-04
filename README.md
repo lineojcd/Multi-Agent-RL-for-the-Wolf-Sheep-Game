@@ -148,6 +148,8 @@ A preset agent that uses a simply greedy approach. It includes the following fun
 - gather_closest_goal() 
 ### A star
 A agent implemented
+### Learning
+
 
 ## Credits
 This project uses the GUI environment from the DDIS group (led by Prof. Abraham Bernstein) of the University of Zurich.
