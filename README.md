@@ -116,7 +116,7 @@ The folder contains the following files:
   - Keyboard player: use this agent to play with your keyboard rather than an algorithm
   - Passive player: this agent simply stays in place
   - Random player: this player makes a random move every turn
-  - One example agent (example_player.py) 
+- One example agent (example_player.py) 
 
 You are given the example agent to get started. You need to do the following within this file (this instruction is also included in the file, and will make more sense once you open the file):
 - Change the name of your file to '[playername]_A1.py', where [playername] can be chosen by yourself.
@@ -125,7 +125,7 @@ You are given the example agent to get started. You need to do the following wit
 - Change the init of your class:
   - self.name can be an (anonymous) name of your choosing
   - self.playername needs to be your playername
-  - Update move_sheep() and move_wolf() function 
+- Update move_sheep() and move_wolf() function 
 
 ## Agents
 The Agents are the key of this project as different agents have different capability to win the game.
