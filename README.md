@@ -176,6 +176,7 @@ However, this fashion of end-to-end is really time consuming and hence required 
 For example, we can design a convolutional neural network to extract the position of the target from the input image and this prediction accuracy will be 100% in this context. The other features can be also extracted similarly. The figure below illustrate this approach:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/cnn_extractor.png)
 
+Again, due to the limited computing power and time constraints, we hand-crafted the features from the input image and hence reduced the state space from high-dimension to relatively low-dimension.
 
 **For Sheep**:
 - sheepfencing: Is my sheep blocking the enemy sheep as the fence?
