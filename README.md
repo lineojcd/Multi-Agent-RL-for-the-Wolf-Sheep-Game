@@ -213,9 +213,7 @@ else:
 The drawback of this strategy is shown in the gif below:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/greedyplayer_drawback_a.gif)
 ### A star player
-[A* search algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm)
-
-A visualization of A star path finding algorithm is shown below:
+[A* search algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm) is a graph traversal and path search algorithm. Through A star, the algorithm will guide the agent to move towards the goal. A visualization of A star path finding algorithm is shown below:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/Astart.png)
 ### Learning player
 Unlike the previous algorithm, in this approach, one needs to learn the strategy from the past experience aka. training data.
