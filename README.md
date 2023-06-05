@@ -247,6 +247,7 @@ if my_move_validation()
   return finalMove 
 return MOVE_NONE
 ```
+- getFoodsPosition() returns a list of available food and its ABS location and relatively location to my current figure position or another position. The returned list is ordered by relatively distance to me. By default the relative distance is referring w.r.t my sheep. This function also take consideration of the award level of food and its relative distance. For example, if my relative distance towards grass and rhubarb are 1 and 4, the function will select the rhubarb prior to grass. 
 
 A visualization of A star path finding algorithm is shown below:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/Astart.png)
