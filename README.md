@@ -231,7 +231,7 @@ s   sS    W  SW   WS    W      s    Ss
 | s     |   #s
 |  W    |     W          
 ```
-- my_move_validation checks if my move is valid or not, similar to valid_move() function.
+- my_move_validation() checks if my move is valid or not, similar to valid_move() function.
 - moveParser() outputs an action to move my agent from the current position to the next position.
 - move_wolf() see pseudocode below
 ```
@@ -249,7 +249,8 @@ return MOVE_NONE
 ```
 - getFoodsPosition() returns a list of available food and its ABS location and relatively location to my current figure position or another position. The returned list is ordered by relatively distance to me. By default the relative distance is referring w.r.t my sheep. This function also take consideration of the award level of food and its relative distance. For example, if my relative distance towards grass and rhubarb are 1 and 4, the function will select the rhubarb prior to grass. 
 - checkSafeFromWolf_by_Manh() returns True value when the Manh Dist from the given spot to enemy wolf is lower than 2 otherwise retuns False value
-- move_far_from_wolf() replace the previous run_from_wolf() function
+- move_far_from_wolf() is similar to run_from_wolf() function but improving its robustness.
+- sheepfencing() is designed for my sheep. Basically, it tells the sheep don't move and work as a fence when my wolf and sheep are trapping the enemy sheep together.
 
 A visualization of A star path finding algorithm is shown below:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/Astart.png)
