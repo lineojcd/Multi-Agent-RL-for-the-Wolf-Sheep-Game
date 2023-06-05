@@ -232,10 +232,20 @@ s   sS    W  SW   WS    W      s    Ss
 |  W    |     W          
 ```
 - my_move_validation checks if my move is valid or not, similar to valid_move() function.
-- moveParser()
-- move_wolf() outputs an action to move my agent from the current position to the next position.
+- moveParser() outputs an action to move my agent from the current position to the next position.
+- move_wolf() see pseudocode below
 ```
-dd      
+finalMove = MOVE_NONE
+suggested_action_position = huntSheep()
+if catchableSheep():
+  finalMove = moveParser()
+if trapableSheep():
+  finalMove = moveParser()
+if stuckableSheep() 
+  finalMove = MOVE_NONE
+if my_move_validation()
+  return finalMove 
+return MOVE_NONE
 ```
 
 A visualization of A star path finding algorithm is shown below:
