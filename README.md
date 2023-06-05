@@ -89,7 +89,7 @@ The map consists of 15x19 squares and each square can contain one of four elemen
 3. Rhubarb "r"
 4. Fence "#"
 
-The start position of the players are represented by the digits:
+The start position of the players are represented by these letters:
 - **S** (Sheep player 1) 
 - **W** (Wolf player 1) 
 - **s** (Sheep player 2) 
