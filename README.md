@@ -213,7 +213,30 @@ else:
 The drawback of this strategy is shown in the gif below:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/greedyplayer_drawback_a.gif)
 ### A* player
-[A* search algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm) is a graph traversal and path search algorithm. Through A star, the algorithm will guide the agent to move towards the goal.  This agent extends all the functions from Greedy player but replacing the gather_closest_goal() function by AStarpath_finding() and decreasing the conservative level in wolf_close() function.
+[A* search algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm) is a graph traversal and path search algorithm. Through A star, the algorithm will guide the agent to move towards the goal.  This agent extends all the functions from Greedy player but replacing the gather_closest_goal() function by A* path finding algorithm and decreasing the conservative level in wolf_close() function.
+
+In addition, it also adds the following functions:
+- getManhDistance() computes manhattan distance between two spots on the map.
+- huntSheep() takes enemy sheep as the goal and finds out the path for my wolf.
+- getObjbyPosition() takes input position and returns what figure stays on this position.
+- catchableSheep() computes manhattan distance between my wolf position and enemy sheep position, if the distance is 1, my wolf is nearby the enemy sheep and return enemy sheep's position.
+- trapableSheep()computes manhattan distance between my wolf and enemy sheep, my sheep and enemy sheep, my sheep and my wolf, and then returns the wolf action position. Basically, it tells you if my sheep and wolf are trapping the enemy sheep together.
+```
+SW   W   sS  s     s    Ss    WS    W
+s   sS    W  SW   WS    W      s    Ss
+```
+- stuckableSheep() returns a FLAG that tells you if the enemy sheep is stuck by my wolf at the fence or the boundry of the map. In this case, my sheep might need to come over instantly and help my wolf to trap the enemy sheep together.
+```
+|-------    ## 
+| s     |   #s
+|  W    |     W          
+```
+- my_move_validation checks if my move is valid or not, similar to valid_move() function.
+- moveParser()
+- move_wolf() outputs an action to move my agent from the current position to the next position.
+```
+dd      
+```
 
 A visualization of A star path finding algorithm is shown below:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/Astart.png)
