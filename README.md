@@ -349,12 +349,15 @@ In the context of RL, a sample **state** for Wolf maybe look like [0, 0, 0, 1, 1
 
 This is actually supervised learning. From the past data(the transformed state) and labels(the action taken by A* player ), we can use SVM model to learn the strategy for our agents.
 
-### Deep Reinforcement Learning player: DDPG
+### Deep Reinforcement Learning player
+![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/tree/main/src)
+#### DDPG
 [Deep Deterministic Policy Gradient (DDPG)](https://spinningup.openai.com/en/latest/algorithms/ddpg.html) is an algorithm of Reinforcement Learning
-### Deep Reinforcement Learning player: Teacher-Student Framework
+#### TODO: draw the diagram or provide result, need to talk
+#### Teacher-Student Framework
 This framework of proposing curriculum automatically through another RL agent was formalized as [Teacher-Student Curriculum Learning](https://lilianweng.github.io/posts/2020-01-29-curriculum-rl/) (TSCL; Matiisen, et al. 2017). In TSCL, a student is an RL agent working on actual tasks while a teacher agent is a policy for selecting tasks. The student aims to master a complex task that might be hard to learn directly. To make this task easier to learn, we set up the teacher agent to guide the student’s training process by picking proper sub-tasks.
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/teacher-student-rl.png)
-#### TODO: draw the diagram
+#### TODO: draw the diagram or provide result, need to talk
 
 ## Contribution and Future work
 In this project, we made the following contributions:
