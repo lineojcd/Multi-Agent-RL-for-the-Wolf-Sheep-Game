@@ -298,7 +298,7 @@ One can approach the game as a classification problem: based on the provided tra
 
 For each of these algorithms, you need to determine features of the game state that you use to classify the game state. For example, these feature can include how close a piece of grass is for a sheep-move, or where the sheep is for a wolf-move. You parse the field into a feature vector your algorithm can use as input.
 
-### Preprocessing: Feature transformation Φ(input map) = vector
+#### Preprocessing: Feature transformation Φ(input map) -> vector
 Obviously, the input matrix can be seen as an image and it is the **state** of the game if talking in the context of Reinforcement Learning.
 **One can also design the Convolutional Neural Networks to extract features from input images and output the action or action probability distrbution for the agent to chose**. In this case, the CNN is actually approximating a policy function that map the states to the action probability distrbution. The diagram is as follows:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/DQN_state_action.png)
@@ -346,10 +346,27 @@ Given this input, the sample **action** taken might be -1.
 - my_pos_right_walkable: Is my right grid walkable?
 
 In the context of RL, a sample **state** for Wolf maybe look like [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1] and the **action** taken might be 0.
+
+This is actually supervised learning. From the past data(the transformed state) and labels(the action taken by A* player ), we can use SVM model to learn the strategy for our agents.
+
 ### Deep Reinforcement Learning player: DDPG
 In 
 
 ### Deep Reinforcement Learning player: Teacher-Student Framework
 
+## Contribution and Future work
+In this project, we made the following contributions:
+- Wrote the gym environment for the game so that it can be used for many existing RL algorithm packages.
+- Developed an agent based on Search Tree algorithm(A*) to play this game.
+- Use dimension reduction techniques to decrease the complexity of the game by transform the image to vector so that it can be learned fastly.
+- Developed an agent based on supervised learning algorithm(SVM) to play this game.
+- Developed an agent based on Reinforcement Learning algorithm(DDPG) to play this game.
+- Developed an agent based on Reinforcement Learning algorithm(Teacher-Student Framework) to play this game.
+- Tested our algorithms on different map to demonstrate its generalizability
+
+In the future work, we will conduct the following aspects: 
+- Learn an end-to-end model for the game where the input is the image and all the features will be extracted along the way instead of hand-crafted separately.
+- Learn one model for multi-agents (depends on the situation).
+- Test on more maps that contain some corner cases.
 ## Credits
 This project uses the GUI environment from the DDIS group (led by Prof. Abraham Bernstein) of the University of Zurich.
