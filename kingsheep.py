@@ -412,11 +412,11 @@ def main():
     _p1m = u'passive_player'
     _p1n = u'PassivePlayer'
 
-    # _p2m = u'random_player'
-    # _p2n = u'RandomPlayer'
+    _p2m = u'basic_astar_player'
+    _p2n = u'BasicAstarPlayer'
 
-    _p2m = u'greedy_player'
-    _p2n = u'GreedyPlayer'
+    # _p2m = u'greedy_player'
+    # _p2n = u'GreedyPlayer'
 
 
 
