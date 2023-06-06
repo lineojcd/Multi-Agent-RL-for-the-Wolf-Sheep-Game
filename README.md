@@ -362,7 +362,7 @@ Unlike the supervised learning, in RL the agent learns from rewards. Thus, we re
 - The agent eating grass will get 1 point
 - The agent eating rhubarb will get 5 points
 - The agent trap enemy sheep with my wolf will get 100 points
-- 
+
 **For Wolf**:
 - The episode starts with 50 pts
 - Each turn the agent get -1 point
