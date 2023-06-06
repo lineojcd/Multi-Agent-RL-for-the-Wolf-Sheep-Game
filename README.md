@@ -383,7 +383,7 @@ In this project, we made the following contributions:
 - Wrote the gym environment for the game so that it can be used for many existing RL algorithm packages.
 - Developed an agent based on Search Tree algorithm(A*) to play this game.
 - Use dimension reduction techniques to decrease the complexity of the game by transform the image to vector so that it can be learned fastly.
-- Developed an agent based on supervised learning algorithm(SVM) to play this game.
+- Developed an agent based on supervised learning algorithm(MLP) to play this game.
 - Developed an agent based on Reinforcement Learning algorithm(DDPG) to play this game.
 - Developed an agent based on Reinforcement Learning algorithm(Teacher-Student Framework) to play this game.
 - Tested our algorithms on different map to demonstrate its generalizability
