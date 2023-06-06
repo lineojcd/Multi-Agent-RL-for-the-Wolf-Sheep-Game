@@ -350,7 +350,7 @@ In the context of RL, a sample **state** for Wolf maybe look like [0, 0, 0, 1, 1
 This is actually supervised learning. From the past data(the transformed state) and labels(the action taken by A* player ), we can use SVM model to learn the strategy for our agents.
 
 ### Deep Reinforcement Learning player
-![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/tree/main/src)
+![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/ddpg.png)
 #### DDPG
 [Deep Deterministic Policy Gradient (DDPG)](https://spinningup.openai.com/en/latest/algorithms/ddpg.html) is an algorithm of Reinforcement Learning
 #### TODO: draw the diagram or provide result, need to talk
