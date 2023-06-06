@@ -278,6 +278,8 @@ else:
 
 A visualization of A star path finding algorithm is shown below:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/Astart.png)
+With A*, the drawback of the Greedy player is solved:
+![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/basic_astar_improve.gif)
 ### Learning player
 Unlike the previous algorithm, in this approach, one needs to learn the strategy from the past experience aka. training data.
 
