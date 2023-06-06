@@ -259,10 +259,10 @@ if stuckableSheep():
   suggestedAction
 if food_present():
   getFoodsPosition()
-  suggestedAction()
+  suggestedAction
 else:
   print("block enemy sheep, when no food available")
-  suggestedAction()
+  suggestedAction
 ```
 - move_sheep() see pseudocode below:
 ```
