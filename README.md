@@ -251,6 +251,30 @@ return MOVE_NONE
 - checkSafeFromWolf_by_Manh() returns True value when the Manh Dist from the given spot to enemy wolf is lower than 2 otherwise retuns False value
 - move_far_from_wolf() is similar to run_from_wolf() function but improving its robustness.
 - sheepfencing() is designed for my sheep. Basically, it tells the sheep don't move and work as a fence when my wolf and sheep are trapping the enemy sheep together.
+- getMoveSearchforSheep() provides move suggestion for my sheep. see pseudocode below:
+```
+if sheepfencing():
+  suggestedAction
+if stuckableSheep():
+  suggestedAction
+if food_present():
+  getFoodsPosition()
+  suggestedAction()
+else:
+  print("block enemy sheep, when no food available")
+  suggestedAction()
+```
+- move_sheep() see pseudocode below:
+```
+finalMove = MOVE_NONE
+suggestedAction = getMoveSearchforSheep()
+if checkSafeFromWolf_by_Manh():
+  finalMove = moveParser()
+  return finalMove
+else:
+  finalMove = move_far_from_wolf()
+  return finalMove
+```
 
 A visualization of A star path finding algorithm is shown below:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/Astart.png)
