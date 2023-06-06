@@ -298,7 +298,7 @@ One can approach the game as a classification problem: based on the provided tra
 
 For each of these algorithms, you need to determine features of the game state that you use to classify the game state. For example, these feature can include how close a piece of grass is for a sheep-move, or where the sheep is for a wolf-move. You parse the field into a feature vector your algorithm can use as input.
 
-### Deep Reinforcement Learning player
+### Preprocessing: Feature transformation Φ(input map) = vector
 Obviously, the input matrix can be seen as an image and it is the **state** of the game if talking in the context of Reinforcement Learning.
 **One can also design the Convolutional Neural Networks to extract features from input images and output the action or action probability distrbution for the agent to chose**. In this case, the CNN is actually approximating a policy function that map the states to the action probability distrbution. The diagram is as follows:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/DQN_state_action.png)
@@ -308,6 +308,7 @@ However, this fashion of end-to-end is really time consuming and hence required 
 For example, we can design a convolutional neural network to extract the position of the target from the input image and this prediction accuracy will be 100% in this context. The other features can be also extracted similarly. The figure below illustrate this approach:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/cnn_extractor.png)
 
+### Supervised Learning player
 Again, due to the limited computing power and time constraints, we hand-crafted the features from the input image and hence reduced the state space from high-dimension to relatively low-dimension.
 
 **For Sheep**:
@@ -345,7 +346,10 @@ Given this input, the sample **action** taken might be -1.
 - my_pos_right_walkable: Is my right grid walkable?
 
 In the context of RL, a sample **state** for Wolf maybe look like [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1] and the **action** taken might be 0.
+### Deep Reinforcement Learning player: DDPG
+In 
 
+### Deep Reinforcement Learning player: Teacher-Student Framework
 
 ## Credits
 This project uses the GUI environment from the DDIS group (led by Prof. Abraham Bernstein) of the University of Zurich.
