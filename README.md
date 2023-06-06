@@ -349,7 +349,7 @@ In the context of RL, a sample **state** for Wolf maybe look like [0, 0, 0, 1, 1
 
 This is actually supervised learning. From the past data(the transformed state) and labels(the action taken by A* player ), we can use SVM model to learn the strategy for our agents.
 
-The process of SVM training can be found in this file: [SVM_model_training.ipynb](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/SVM_model_training.ipynb)
+The process of SVM training can be found in this file: [SVM_model_training.ipynb](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/SVM_model_training.ipynb). The model for sheep and wolf can be found from the file [xiason_sheep_model.sav](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/xiason_sheep_model.sav) and [xiason_wolf_model.sav](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/xiason_wolf_model.sav)
 
 ### Deep Reinforcement Learning player
 Unlike the supervised learning, in RL the agent learns from rewards. Thus, we re-design the rewards for our agents:
