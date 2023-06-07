@@ -354,7 +354,7 @@ The process of MLP training can be found in this file: [MLP_model_training.ipynb
 To run the player that needs to load model, please use **kingsheep_model.py**. Noted that to test your learning agent, please select **simple player** as your opponent if you do not wanna spend more time on tuning the code.
 
 ### Deep Reinforcement Learning player
-Unlike the supervised learning, in RL the agent learns from rewards. Thus, we re-design the rewards for our agents:
+Unlike the supervised learning, **in RL the agent learns from rewards**. Thus, we re-design the rewards for our agents:
 
 **For Sheep**:
 - The episode starts with 100 pts
