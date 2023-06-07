@@ -12,7 +12,7 @@ env = WolfSheepEnv(CELL_WOLF_1)
 reward_log_ppo = []
 
 # Number of episodes for training
-n_episodes = 150
+n_episodes = 2000
 
 plt.ion()  # Turn on interactive mode for matplotlib
 fig, axs = plt.subplots()
@@ -55,13 +55,18 @@ for episode in range(n_episodes):
     reward_log_ppo.append(total_reward)
 
     # Clear the current plot and plot the reward log
-    axs.clear()
-    axs.plot(reward_log_ppo)
-    axs.set_title('PPO Reward over time')
-    axs.set_xlabel('Episode')
-    axs.set_ylabel('Total reward')
-    plt.draw()
-    plt.pause(0.001)  # Pause to update the plot
+    # axs.clear()
+    # axs.plot(reward_log_ppo)
+    # axs.set_title('PPO Reward over time')
+    # axs.set_xlabel('Episode')
+    # axs.set_ylabel('Total reward')
+    # plt.draw()
+    # plt.pause(0.001)  # Pause to update the plot
 
-plt.ioff()  # Turn off interactive mode
-plt.show()
+# plt.ioff()  # Turn off interactive mode
+# plt.show()
+axs.plot(reward_log_ppo)
+axs.set_title('PPO Reward over time')
+axs.set_xlabel('Episode')
+axs.set_ylabel('Total reward')
+plt.savefig('foo.pdf')
