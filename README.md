@@ -351,7 +351,7 @@ This is actually supervised learning. From the past data(the transformed state) 
 
 The process of MLP training can be found in this file: [MLP_model_training.ipynb](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/MLP_model_training.ipynb). The MLP player can be found in this file [mlp_player.py](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/mlp_player.py). The trained model for sheep and wolf can be found from the file [xiason_sheep_model.sav](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/xiason_sheep_model.sav) and [xiason_wolf_model.sav](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/xiason_wolf_model.sav). 
 
-To run the player that needs to load model, please use kingsheep_model.py. Noted that to test your learning agent, please select simple player as your opponent if you do not wanna spend more time on tuning the code.
+To run the player that needs to load model, please use **kingsheep_model.py**. Noted that to test your learning agent, please select **simple player** as your opponent if you do not wanna spend more time on tuning the code.
 
 ### Deep Reinforcement Learning player
 Unlike the supervised learning, in RL the agent learns from rewards. Thus, we re-design the rewards for our agents:
