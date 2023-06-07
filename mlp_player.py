@@ -351,15 +351,18 @@ class MLPPlayer():
                 s_103_my_pos_right_walkable = 0
                 s_feature_104_my_pos_stay_safeable=1
 
+        # features from here 
         game_features.append(s_feature_90_sheepfencing)
         game_features.append(s_feature_91_stuckableSheep)
         game_features.append(s_92_stayable)
         game_features.append(s_feature_100_food_present)
         game_features.append(s_101_mypos_2_new_tar_has_way)
+        #
         game_features.append(s_101_mypos_up_2_new_tar_real_dist_smaller)
         game_features.append(s_101_mypos_down_2_new_tar_real_dist_smaller)
         game_features.append(s_101_mypos_left_2_new_tar_real_dist_smaller)
         game_features.append(s_101_mypos_right_2_new_tar_real_dist_smaller)
+        #
         game_features.append(s_feature_102_new_tar_neighboring)
         game_features.append(s_103_my_pos_up_walkable)
         game_features.append(s_103_my_pos_down_walkable)

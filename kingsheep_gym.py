@@ -155,7 +155,7 @@ class KsField:
                     if target_figure == CELL_WOLF_2:    
                         self.field[x_old][y_old] = CELL_SHEEP_1_d
                         self.score2 += self.score1
-                        self.score1 = -100 
+                        self.score1 = -100
                         return True,'sheep1 suicide'
                     else:
                         # self.score1 += self.award(target_figure)
@@ -175,9 +175,12 @@ class KsField:
                 elif figure == CELL_WOLF_1:
                     if target_figure == CELL_SHEEP_2:   
                         self.field[x_new][y_new] = CELL_SHEEP_2_d
-                        self.score1 += self.score2
+                        self.score1 = 100
+                        # self.score1 += self.score2
                         self.score2 = -1 
                         return True, 'sheep2 eaten'
+                    else: 
+                        self.score1 = -1 * self.award(target_figure)
 
                 elif figure == CELL_WOLF_2:
                     if target_figure == CELL_SHEEP_1:   
@@ -204,9 +207,10 @@ class KsField:
 
 
 class WolfSheepEnv(gym.Env):
-    def __init__(self):
+    def __init__(self,figure):
         super(WolfSheepEnv, self).__init__()
 
+        self.figure = figure
         mod2 = importlib.import_module("random_player")
         player2class = getattr(mod2, "RandomPlayer")
 
@@ -227,6 +231,7 @@ class WolfSheepEnv(gym.Env):
         self.map = self.ks.get_field()
 
         self.mapping = {'.': 0, 'W': 1, 'S': 2, 'g': 3, 'r': 4, '#': 5, 's': 6, 'w': 7,'U':8,'u':9}
+        # self.rev_mapping = { 0:'.', 1:'W', 2:'S', 3:'g', 4:'r', 5:'#', 6:'s', 7:'w',8:'U',9:'u'}
 
         self.grid_size = (len(self.map), len(self.map[0]))
         self.action_space = spaces.Discrete(5)  # Up, Down, Left, Right, None
@@ -234,7 +239,8 @@ class WolfSheepEnv(gym.Env):
         # transform the map to a numeric grid
         self.state = self.reset()
         self.observation_space = spaces.Box(low=0, high=len(self.mapping), shape=self.state.shape, dtype=np.uint8)
-        self.current_position = self.ks.get_position(CELL_SHEEP_1)#self.start_position.copy()
+        # self.current_position = self.ks.get_position(CELL_SHEEP_1)#self.start_position.copy()CELL_WOLF_1
+        self.current_position = self.ks.get_position(self.figure)#self.start_position.copy()
 
     def transform_map(self):
         numeric_map = [[self.mapping[char] for char in row] for row in self.map]
@@ -242,9 +248,11 @@ class WolfSheepEnv(gym.Env):
 
 
 
+
     def reset(self):
         self.ks.reset()
-        self.current_position = self.ks.get_position(CELL_SHEEP_1)
+        # self.current_position = self.ks.get_position(CELL_SHEEP_1)
+        self.current_position = self.ks.get_position(self.figure)
         # Reset step counter
         self.steps = 0
         self.map = self.ks.get_field() 
@@ -264,7 +272,8 @@ class WolfSheepEnv(gym.Env):
         if action == 3: action = 2
         if action == 4: action = 0
 
-        result2_game_over = self.ks.move(CELL_SHEEP_1, action, '')[0]
+        # result2_game_over = self.ks.move(CELL_SHEEP_1, action, '')[0]
+        result2_game_over = self.ks.move(self.figure, action, '')[0]
 
         
         # Increase step counter
@@ -272,7 +281,7 @@ class WolfSheepEnv(gym.Env):
         
         done = self.steps >= 100 or result2_game_over
 
-        reward = -1 + self.ks.score1  # Every step costs -1.
+        reward = -0.2 + self.ks.score1  # Every step costs -0.5.
         
         self.map = self.ks.get_field() 
         self.state = self.transform_map()
@@ -284,10 +293,10 @@ if __name__ == '__main__':
     from stable_baselines3 import PPO
 
     # Instantiate the environment
-    env = WolfSheepEnv()
+    env = WolfSheepEnv(CELL_SHEEP_1)
 
     # Path to the saved model file
-    model_file = "best_model_ppo_wolfsheep.zip"
+    model_file = "best_model_ppo_sheep_base.zip"
 
     # Load the saved model
     model_ppo = PPO.load(model_file)
@@ -299,4 +308,4 @@ if __name__ == '__main__':
         action, _ = model_ppo.predict(obs)
         obs, reward, done, info = env.step(action)
         os.system('clear')
-        print(obs,end='')
+        print(env.ks.print_ks())
