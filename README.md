@@ -277,7 +277,7 @@ else:
 ```
 
 A visualization of A star path finding algorithm is shown below:
-![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/Astart.png)
+![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/Astart_mod.png)
 With A*, the drawback of the Greedy player is solved:
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/basic_astar_improve_.gif)
 ### Learning player
