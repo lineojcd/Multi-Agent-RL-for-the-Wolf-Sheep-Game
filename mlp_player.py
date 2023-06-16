@@ -376,6 +376,345 @@ class MLPPlayer():
         result = sheep_model.predict(X_sheep)
         return result
 
+    def move_sheep_costum(self, figure, field, sheep_model):
+        X_sheep = []
+        game_features = []
+
+        if figure == 1:
+            sheep = 'S'
+            wolf = 'W'
+            player_number = 1
+            enemy_sheep = 's'
+            enemy_wolf = 'w'
+        else:
+            sheep = 's'
+            wolf = 'w'
+            player_number = 2
+            enemy_sheep = 'S'
+            enemy_wolf = 'W'
+
+
+        #preprocess field to get features, add to X_sheep
+        #create empty feature array for this game state
+
+        # get positions of sheep, wolf and food items
+        sheep_position = get_player_position(sheep, field)
+        my_pos = sheep_position
+
+        s_92_stayable = 0
+
+        #       feature: sheepfencing 1(yes) or 0(no)
+        s_feature_90_sheepfencing = sheepfencing(my_pos[0], my_pos[1], player_number, field)
+        #        if fencing:  move: None
+        if s_feature_90_sheepfencing:
+            s_feature_100_food_present = 0
+            s_92_stayable = 1
+        else:
+            s_feature_100_food_present = food_present(field)
+
+        #       feature: stuckableSheep 1(yes) or 0(no)
+        s_feature_91_stuckableSheep = stuckableSheep(my_pos[0], my_pos[1], player_number, field)
+
+        if s_feature_91_stuckableSheep:
+            s_feature_100_food_present = 0
+        else:
+            s_feature_100_food_present = food_present(field)
+
+        s_101_mypos_2_new_tar_has_way = 0
+        s_101_mypos_up_2_new_tar_real_dist_smaller = 0
+        s_101_mypos_down_2_new_tar_real_dist_smaller = 0
+        s_101_mypos_left_2_new_tar_real_dist_smaller = 0
+        s_101_mypos_right_2_new_tar_real_dist_smaller = 0
+
+        if s_feature_100_food_present:
+            foodList = getFoodsPosition(my_pos[0], my_pos[1], field)
+            #             foodSamplingList = getFoodsPosition(sheep,my_pos[0], my_pos[1], field)
+            foodSamplingList = getFoodRealDistforPositionList(sheep, my_pos[0], my_pos[1], foodList, field)
+            #  foodList: list of  (realDist,item_figure,(tar_pos_y_V, tar_pos_x_H))
+            goal4Sheep = foodSamplingList[foodclossness2sheep]
+            new_tar_pos4sheep = goal4Sheep[2]
+            real_food_dist_from_current_2_tar = goal4Sheep[0]
+            if real_food_dist_from_current_2_tar < MAX_DIST - 10:
+                hasWay,real_dist_from_current_2_tar  = getRealDistance(sheep, my_pos[0], my_pos[1], new_tar_pos4sheep[0], new_tar_pos4sheep[1], field)
+            else:
+                real_dist_from_current_2_tar = MAX_DIST
+        else:
+            new_tar_pos4sheep = get_player_position(enemy_sheep, field)
+            hasWay, real_dist_from_current_2_tar = getRealDistance(sheep, my_pos[0], my_pos[1], new_tar_pos4sheep[0],new_tar_pos4sheep[1], field)
+
+        if getManhDistance(my_pos[0], my_pos[1], new_tar_pos4sheep[0], new_tar_pos4sheep[1]) == 1:
+            s_feature_102_new_tar_neighboring = 1
+        else:
+            s_feature_102_new_tar_neighboring = 0
+
+        s_105_runfromwolf = 0
+        s_103_my_pos_up_walkable = 0
+        s_103_my_pos_down_walkable = 0
+        s_103_my_pos_left_walkable = 0
+        s_103_my_pos_right_walkable = 0
+
+        real_dist_from_current_up_2_tar = MAX_DIST + 1
+        real_dist_from_current_down_2_tar = MAX_DIST + 1
+        real_dist_from_current_left_2_tar = MAX_DIST + 1
+        real_dist_from_current_right_2_tar = MAX_DIST + 1
+
+        if real_dist_from_current_2_tar < MAX_DIST - 10:
+            #    this means has way and one can reach there
+            s_101_mypos_2_new_tar_has_way = 1
+            if my_pos[1] > 0 and my_pos[1] < FIELD_WIDTH - 1 and my_pos[0] > 0 and my_pos[0] < FIELD_HEIGHT - 1:
+                up_hasWay, real_dist_from_current_up_2_tar = getRealDistance(sheep, my_pos[0] - 1, my_pos[1],new_tar_pos4sheep[0], new_tar_pos4sheep[1],field)
+                down_hasWay, real_dist_from_current_down_2_tar = getRealDistance(sheep, my_pos[0] + 1, my_pos[1],new_tar_pos4sheep[0],new_tar_pos4sheep[1], field)
+                left_hasWay, real_dist_from_current_left_2_tar = getRealDistance(sheep, my_pos[0], my_pos[1] - 1,new_tar_pos4sheep[0],new_tar_pos4sheep[1], field)
+                right_hasWay, real_dist_from_current_right_2_tar = getRealDistance(sheep, my_pos[0], my_pos[1] + 1,new_tar_pos4sheep[0],new_tar_pos4sheep[1], field)
+
+                s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number, field)
+                s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number, field)
+                s_103_my_pos_left_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] - 1, player_number, field)
+                s_103_my_pos_right_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] + 1, player_number, field)
+            else:
+                if my_pos[1] == 0:
+                    right_hasWay, real_dist_from_current_right_2_tar = getRealDistance(sheep, my_pos[0], my_pos[1] + 1,
+                                                                                       new_tar_pos4sheep[0],
+                                                                                       new_tar_pos4sheep[1], field)
+                    s_103_my_pos_right_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] + 1, player_number, field)
+                    if my_pos[0] == 0:
+                        down_hasWay, real_dist_from_current_down_2_tar = getRealDistance(sheep, my_pos[0] + 1,my_pos[1],
+                                                                                         new_tar_pos4sheep[0],
+                                                                                         new_tar_pos4sheep[1], field)
+                        s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number,field)
+                    elif my_pos[0] == FIELD_HEIGHT - 1:
+                        up_hasWay, real_dist_from_current_up_2_tar = getRealDistance(sheep, my_pos[0] - 1, my_pos[1],
+                                                                                     new_tar_pos4sheep[0],
+                                                                                     new_tar_pos4sheep[1], field)
+                        s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number, field)
+                    else:
+                        up_hasWay, real_dist_from_current_up_2_tar = getRealDistance(sheep, my_pos[0] - 1, my_pos[1],
+                                                                                     new_tar_pos4sheep[0],
+                                                                                     new_tar_pos4sheep[1], field)
+                        s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number, field)
+                        down_hasWay, real_dist_from_current_down_2_tar = getRealDistance(sheep, my_pos[0] + 1,my_pos[1],
+                                                                                         new_tar_pos4sheep[0],
+                                                                                         new_tar_pos4sheep[1], field)
+                        s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number,field)
+                elif my_pos[1] == FIELD_WIDTH - 1:
+                    left_hasWay, real_dist_from_current_left_2_tar = getRealDistance(sheep, my_pos[0], my_pos[1] - 1,
+                                                                                      new_tar_pos4sheep[0],
+                                                                                      new_tar_pos4sheep[1], field)
+                    s_103_my_pos_left_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] - 1, player_number, field)
+                    if my_pos[0] == 0:
+                        down_hasWay, real_dist_from_current_down_2_tar = getRealDistance(sheep, my_pos[0] + 1,my_pos[1],
+                                                                                         new_tar_pos4sheep[0],
+                                                                                         new_tar_pos4sheep[1], field)
+                        s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number,field)
+                    elif my_pos[0] == FIELD_HEIGHT - 1:
+                        up_hasWay, real_dist_from_current_up_2_tar = getRealDistance(sheep, my_pos[0] - 1, my_pos[1],
+                                                                                     new_tar_pos4sheep[0],
+                                                                                     new_tar_pos4sheep[1], field)
+                        s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number, field)
+                    else:
+                        up_hasWay, real_dist_from_current_up_2_tar = getRealDistance(sheep, my_pos[0] - 1, my_pos[1],
+                                                                                     new_tar_pos4sheep[0],
+                                                                                     new_tar_pos4sheep[1], field)
+                        s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number, field)
+                        down_hasWay, real_dist_from_current_down_2_tar = getRealDistance(sheep, my_pos[0] + 1,my_pos[1],
+                                                                                         new_tar_pos4sheep[0],
+                                                                                         new_tar_pos4sheep[1], field)
+                        s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number,field)
+                else:
+                    right_hasWay, real_dist_from_current_right_2_tar = getRealDistance(sheep, my_pos[0], my_pos[1] + 1,
+                                                                                       new_tar_pos4sheep[0],
+                                                                                       new_tar_pos4sheep[1], field)
+                    s_103_my_pos_right_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] + 1, player_number, field)
+
+                    left_hasWay, real_dist_from_current_left_2_tar = getRealDistance(sheep, my_pos[0], my_pos[1] - 1,
+                                                                                      new_tar_pos4sheep[0],
+                                                                                      new_tar_pos4sheep[1], field)
+                    s_103_my_pos_left_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] - 1, player_number, field)
+
+                    if my_pos[0] == 0:
+                        down_hasWay, real_dist_from_current_down_2_tar = getRealDistance(sheep, my_pos[0] + 1,my_pos[1],
+                                                                                         new_tar_pos4sheep[0],
+                                                                                         new_tar_pos4sheep[1], field)
+                        s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number, field)
+                    else:
+                        up_hasWay, real_dist_from_current_up_2_tar = getRealDistance(sheep, my_pos[0] - 1, my_pos[1],
+                                                                                     new_tar_pos4sheep[0],
+                                                                                     new_tar_pos4sheep[1], field)
+                        s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number, field)
+
+            if real_dist_from_current_up_2_tar < real_dist_from_current_2_tar:
+                s_101_mypos_up_2_new_tar_real_dist_smaller = 1
+            if real_dist_from_current_down_2_tar < real_dist_from_current_2_tar:
+                s_101_mypos_down_2_new_tar_real_dist_smaller = 1
+            if real_dist_from_current_left_2_tar < real_dist_from_current_2_tar:
+                s_101_mypos_left_2_new_tar_real_dist_smaller = 1
+            if real_dist_from_current_right_2_tar < real_dist_from_current_2_tar:
+                s_101_mypos_right_2_new_tar_real_dist_smaller = 1
+
+            if s_103_my_pos_up_walkable == 1:
+                if s_101_mypos_up_2_new_tar_real_dist_smaller ==1:
+                    pass
+                else:
+                    s_103_my_pos_up_walkable =0
+            else:
+                s_101_mypos_up_2_new_tar_real_dist_smaller = 0
+            if s_103_my_pos_down_walkable == 1:
+                if s_101_mypos_down_2_new_tar_real_dist_smaller ==1:
+                    pass
+                else:
+                    s_103_my_pos_down_walkable =0
+            else:
+                s_101_mypos_down_2_new_tar_real_dist_smaller = 0
+            if s_103_my_pos_left_walkable == 1:
+                if s_101_mypos_left_2_new_tar_real_dist_smaller ==1:
+                    pass
+                else:
+                    s_103_my_pos_left_walkable =0
+            else:
+                s_101_mypos_left_2_new_tar_real_dist_smaller = 0
+            if s_103_my_pos_right_walkable == 1:
+                if s_101_mypos_right_2_new_tar_real_dist_smaller ==1:
+                    pass
+                else:
+                    s_103_my_pos_right_walkable =0
+            else:
+                s_101_mypos_right_2_new_tar_real_dist_smaller = 0
+
+
+            s_105_runfromwolf = 1
+
+        else:
+            #     no way
+            s_feature_104_my_pos_stay_safeable = checkSafeFromWolf_by_Manh(my_pos[0], my_pos[1], player_number, field)
+            if not s_feature_104_my_pos_stay_safeable:
+                #      if stay is dangerous (not safe)
+                s_105_runfromwolf = 1
+                s_103_my_pos_up_walkable = 0
+                s_103_my_pos_down_walkable = 0
+                s_103_my_pos_left_walkable = 0
+                s_103_my_pos_right_walkable = 0
+
+                if my_pos[1] > 0 and my_pos[1] < FIELD_WIDTH - 1 and my_pos[0] > 0 and my_pos[0] < FIELD_HEIGHT - 1:
+                    s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number, field)
+                    s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number, field)
+                    s_103_my_pos_left_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] - 1, player_number, field)
+                    s_103_my_pos_right_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] + 1, player_number, field)
+                else:
+                    if my_pos[1] == 0:
+                        s_103_my_pos_right_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] + 1, player_number,
+                                                                            field)
+                        if my_pos[0] == 0:
+                            s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number,
+                                                                               field)
+                        elif my_pos[0] == FIELD_HEIGHT - 1:
+                            s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number,
+                                                                             field)
+                        else:
+                            s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number,
+                                                                             field)
+                            s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number,
+                                                                               field)
+                    elif my_pos[1] == FIELD_WIDTH - 1:
+                        s_103_my_pos_left_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] - 1, player_number,
+                                                                           field)
+                        if my_pos[0] == 0:
+                            s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number,
+                                                                               field)
+                        elif my_pos[0] == FIELD_HEIGHT - 1:
+                            s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number,
+                                                                             field)
+                        else:
+                            s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number,
+                                                                             field)
+                            s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number,
+                                                                               field)
+                    else:
+                        s_103_my_pos_right_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] + 1, player_number,
+                                                                            field)
+                        s_103_my_pos_left_walkable = checkwalkableforsheep(my_pos[0], my_pos[1] - 1, player_number,
+                                                                           field)
+                        if my_pos[0] == 0:
+                            s_103_my_pos_down_walkable = checkwalkableforsheep(my_pos[0] + 1, my_pos[1], player_number,
+                                                                               field)
+                        else:
+                            s_103_my_pos_up_walkable = checkwalkableforsheep(my_pos[0] - 1, my_pos[1], player_number,
+                                                                             field)
+            else:
+                s_92_stayable = 1
+                s_105_runfromwolf = 0
+                s_103_my_pos_up_walkable = 0
+                s_103_my_pos_down_walkable = 0
+                s_103_my_pos_left_walkable = 0
+                s_103_my_pos_right_walkable = 0
+
+        s_feature_104_my_pos_stay_safeable = checkSafeFromWolf_by_Manh(my_pos[0], my_pos[1], player_number, field)
+
+
+        if (not  s_feature_104_my_pos_stay_safeable) and real_dist_from_current_2_tar <  min(real_dist_from_current_up_2_tar,real_dist_from_current_down_2_tar,real_dist_from_current_left_2_tar,real_dist_from_current_right_2_tar ):
+            minVfourWay = min(real_dist_from_current_up_2_tar,real_dist_from_current_down_2_tar,real_dist_from_current_left_2_tar,real_dist_from_current_right_2_tar )
+            dictWay={ 'real_dist_from_current_up_2_tar':real_dist_from_current_up_2_tar,
+                'real_dist_from_current_down_2_tar':real_dist_from_current_down_2_tar,
+                'real_dist_from_current_left_2_tar':real_dist_from_current_left_2_tar,
+                'real_dist_from_current_right_2_tar':real_dist_from_current_right_2_tar}
+
+            special_way ='stay'
+            for way in dictWay:
+                if minVfourWay == dictWay[way]:
+                    special_way = way
+
+            if  'up'  in special_way:
+                s_feature_102_new_tar_neighboring = 0
+                s_101_mypos_2_new_tar_has_way=1
+                s_101_mypos_up_2_new_tar_real_dist_smaller=1
+                s_103_my_pos_up_walkable =1
+                # s_101_mypos_up_2_new_tar_real_dist_smaller=1
+            elif 'down' in special_way :
+                s_feature_102_new_tar_neighboring = 0
+                s_101_mypos_2_new_tar_has_way = 1
+                s_101_mypos_down_2_new_tar_real_dist_smaller=1
+                s_103_my_pos_down_walkable = 1
+            elif 'left' in special_way :
+                s_feature_102_new_tar_neighboring = 0
+                s_101_mypos_2_new_tar_has_way = 1
+                s_101_mypos_left_2_new_tar_real_dist_smaller=1
+                s_103_my_pos_left_walkable=1
+            elif 'right' in special_way :
+                s_feature_102_new_tar_neighboring = 0
+                s_101_mypos_2_new_tar_has_way = 1
+                s_101_mypos_right_2_new_tar_real_dist_smaller=1
+                s_103_my_pos_right_walkable = 1
+            else:
+                s_103_my_pos_up_walkable = 0
+                s_103_my_pos_down_walkable = 0
+                s_103_my_pos_left_walkable = 0
+                s_103_my_pos_right_walkable = 0
+                s_feature_104_my_pos_stay_safeable=1
+
+        # features from here 
+        game_features.append(s_feature_90_sheepfencing)
+        game_features.append(s_feature_91_stuckableSheep)
+        game_features.append(s_92_stayable)
+        game_features.append(s_feature_100_food_present)
+        game_features.append(s_101_mypos_2_new_tar_has_way)
+        #
+        game_features.append(s_101_mypos_up_2_new_tar_real_dist_smaller)
+        game_features.append(s_101_mypos_down_2_new_tar_real_dist_smaller)
+        game_features.append(s_101_mypos_left_2_new_tar_real_dist_smaller)
+        game_features.append(s_101_mypos_right_2_new_tar_real_dist_smaller)
+        #
+        game_features.append(s_feature_102_new_tar_neighboring)
+        game_features.append(s_103_my_pos_up_walkable)
+        game_features.append(s_103_my_pos_down_walkable)
+        game_features.append(s_103_my_pos_left_walkable)
+        game_features.append(s_103_my_pos_right_walkable)
+        game_features.append(s_feature_104_my_pos_stay_safeable)
+        game_features.append(s_105_runfromwolf)
+
+        #add features and move to X_sheep
+        X_sheep.append(game_features)
+        result = sheep_model.predict(X_sheep)
+        return result, game_features
+
 
     def move_wolf(self, figure, field, wolf_model):
         X_wolf = []

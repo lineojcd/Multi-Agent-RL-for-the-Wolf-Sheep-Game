@@ -1,27 +1,27 @@
 from stable_baselines3 import DQN, A2C, PPO
 import matplotlib.pyplot as plt
-from kingsheep_gym import  WolfSheepEnv
+from teacher_student_policy import  WolfSheepEnv
 import os 
 from config import *
 
 # Instantiate the environment
-env = WolfSheepEnv(CELL_WOLF_1)
+env = WolfSheepEnv(CELL_SHEEP_1)
 
 # Initialize the reward logs
 
 reward_log_ppo = []
 
 # Number of episodes for training
-n_episodes = 2000
+n_episodes = 100
 
-# plt.ion()  # Turn on interactive mode for matplotlib
-# fig, axs = plt.subplots()
+plt.ion()  # Turn on interactive mode for matplotlib
+fig, axs = plt.subplots()
 
 
 # PPO
 model_ppo = PPO("MlpPolicy", env, verbose=1, device='cuda')
 # Define the path to save the best model
-save_path = "best_model_ppo_wolf.zip"
+save_path = "best_model_vector_ppo_sheep.zip"
 # Set the best mean reward to negative infinity
 best_mean_reward = float('-inf')
 
@@ -55,19 +55,19 @@ for episode in range(n_episodes):
     reward_log_ppo.append(total_reward)
 
     # Clear the current plot and plot the reward log
-    # axs.clear()
-    # axs.plot(reward_log_ppo)
-    # axs.set_title('PPO Reward over time')
-    # axs.set_xlabel('Episode')
-    # axs.set_ylabel('Total reward')
-    # plt.draw()
-    # plt.pause(0.001)  # Pause to update the plot
+    axs.clear()
+    axs.plot(reward_log_ppo)
+    axs.set_title('PPO Reward over time')
+    axs.set_xlabel('Episode')
+    axs.set_ylabel('Total reward')
+    plt.draw()
+    plt.pause(0.001)  # Pause to update the plot
 
-# plt.ioff()  # Turn off interactive mode
-# plt.show()
-fig, axs = plt.subplots()
-axs.plot(reward_log_ppo)
-axs.set_title('PPO Reward over time')
-axs.set_xlabel('Episode')
-axs.set_ylabel('Total reward')
-plt.savefig('foo.pdf')
+plt.ioff()  # Turn off interactive mode
+plt.show()
+# fig, axs = plt.subplots()
+# axs.plot(reward_log_ppo)
+# axs.set_title('PPO Reward over time')
+# axs.set_xlabel('Episode')
+# axs.set_ylabel('Total reward')
+# plt.savefig('foo.pdf')

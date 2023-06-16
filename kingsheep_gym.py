@@ -10,6 +10,7 @@ from multiprocessing import Pool, TimeoutError
 # from kingsheep import *
 from config import *
 import os
+import time 
 
 debug = False
 verbosity = 5
@@ -309,3 +310,4 @@ if __name__ == '__main__':
         obs, reward, done, info = env.step(action)
         os.system('clear')
         print(env.ks.print_ks())
+        time.sleep(0.1)
