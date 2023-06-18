@@ -1,21 +1,3 @@
-"""
-Xiason Kingsheep Agent by SVM
-
-
-Please edit the following things before you upload your agent:
-    - change the name of your file to '[uzhshortname]_A2.py', where [uzhshortname] needs to be your uzh shortname
-    - change the name of the class to a name of your choosing
-    - change the def 'get_class_name()' to return the new name of your class
-    - change the init of your class:
-        - self.name can be an (anonymous) name of your choosing
-        - self.uzh_shortname needs to be your UZH shortname
-    - change the name of the model in get_sheep_model to [uzhshortname]_sheep_model
-    - change the name of the model in get_wolf_model to [uzhshortname]_wolf_model
-
-The results and rankings of the agents will be published on OLAT using your 'name', not 'uzh_shortname',
-so they are anonymous (and your 'name' is expected to be funny, no pressure).
-
-"""
 from config import *
 import pickle
 import copy
