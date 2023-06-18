@@ -370,13 +370,17 @@ Unlike the supervised learning, **in RL the agent learns from rewards**. Thus, w
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/ddpg.png)
 The process of RL is shown in the picture. Still, we use the feature transformation Φ(St) instead of the real St to avoid the heavy computational cost.
 
-#### DDPG player
-[Deep Deterministic Policy Gradient (DDPG)](https://spinningup.openai.com/en/latest/algorithms/ddpg.html) is an algorithm of Reinforcement Learning
-#### TODO: draw the diagram or provide result, need to talk
+#### Proximal Policy Optimization (PPO) player
+[Proximal Policy Optimization (PPO)](https://openai.com/research/openai-baselines-ppo): the advantages can be enumerated as follows:
+- It operates on policy, meaning it learns directly from the interactions it experiences.
+- It strikes an effective balance between sample efficiency and stability.
+- It proves robust in the face of hyperparameter selection, often ensuring reliable convergence.
+- It employs a surrogate objective function, complemented by a clipping mechanism, to ensure the stability of updates.
+
 #### Teacher-Student player
 This framework of proposing curriculum automatically through another RL agent was formalized as [Teacher-Student Curriculum Learning](https://lilianweng.github.io/posts/2020-01-29-curriculum-rl/) (TSCL; Matiisen, et al. 2017). In TSCL, a student is an RL agent working on actual tasks while a teacher agent is a policy for selecting tasks. The student aims to master a complex task that might be hard to learn directly. To make this task easier to learn, we set up the teacher agent to guide the student’s training process by picking proper sub-tasks.
 ![](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/src/teacher-student-rl.png)
-#### TODO: draw the diagram or provide result, need to talk
+#### Please check the detailed usage of Teacher-Student framework in our paper [here](https://github.com/lineojcd/Multi-Agent-RL-for-the-Wolf-Sheep-Game/blob/main/report/EE260_RL_final_paper.pdf)
 
 ## Contribution and Future work
 In this project, we made the following contributions:
